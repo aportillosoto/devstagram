@@ -17,7 +17,7 @@ class RegisterController extends Controller
         //dd($request);
         //dd($request->get('username'));
         //Modificar el request
-        $request->request->add(['username'=>Str::slug($request->name)]);
+        $request->request->add(['username'=>Str::slug($request->username)]);
         //validaciones
         $this->validate($request,
         [

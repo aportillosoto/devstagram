@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //
-    public function index()
+    public function __construct()
     {
-        return view('layouts.dashboard');
+        $this->middleware('auth');
+    }
+    public function index(User $user)
+    {
+        return view('layouts.dashboard',[
+            'user'=> $user
+        ]);
     }
 }

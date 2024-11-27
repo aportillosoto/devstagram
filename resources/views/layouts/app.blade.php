@@ -11,10 +11,27 @@
        <header class="p-5 border-b bg-white shadow">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-3xl font-black">DevStragram</h1>
+            @auth
             <nav class="flex gap-2 items-center">
-                <a class="font-bold uppercase text-gray-600 text-sm"href="#">Login</a>
-                <a class="font-bold uppercase text-gray-600 text-sm"href="{{route('register')}}">Crear Cuenta</a>
-            </nav>
+                <a class="font-bold text-gray-600 text-sm"href="#">
+                    Hola: <span class="font-normal">{{auth()->user()->username}}
+                    </span>
+                </a>
+                <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm">
+                            Cerrar Sesión
+                        </button>
+                </form>
+                
+            </nav>   
+            @endauth
+            @guest
+                <nav class="flex gap-2 items-center">
+                    <a class="font-bold uppercase text-gray-600 text-sm"href="{{route('login')}}">Login</a>
+                    <a class="font-bold uppercase text-gray-600 text-sm"href="{{route('register')}}">Crear Cuenta</a>
+                </nav>                
+            @endguest
         </div>
     </header> 
     <main class="container mx-auto mt-10">
