@@ -1,7 +1,7 @@
 import Dropzone from "dropzone";
 
 Dropzone.autoDiscover = false;
-
+if(document.querySelector('#dropzone')) {
 const dropzone = new Dropzone("#dropzone",{
     dictDefaultMessage: 'Subi aquí tu imagen',
     acceptedFiles: ".png, .jpg, .jpeg, .gif",
@@ -29,4 +29,5 @@ dropzone.on("success",function(file, response){
 
 dropzone.on("removedfile",function(){
     document.querySelector('[name="imagen"]').value = '';
-});
+})
+};
