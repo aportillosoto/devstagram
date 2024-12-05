@@ -35,8 +35,41 @@
                         <p class="bg-red-500 text-white rounded-lg text-sm p-2 text-center">
                             {{$message}}
                         </p>
-                    @enderror                     
-                </div>                
+                    @enderror                                    
+                </div>  
+                <div class="mb-5">
+                    <label for="current_password" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Password Actual
+                    </label>
+                    <input type="password" id="current_password" name="current_password" placeholder="Ingrese su contraseña actual" 
+                    class="border p-3 w-full rounded-lg 
+                    @error('current_password') border-red-500 @enderror"> 
+                    @error('current_password')
+                        <p class="bg-red-500 text-white rounded-lg text-sm p-2 text-center">
+                            {{$message}}
+                        </p>
+                    @enderror                       
+                </div> 
+                <div class="mb-5">
+                    <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Nuevo Password
+                    </label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su nueva contraseña" 
+                    class="border p-3 w-full rounded-lg 
+                    @error('password') border-red-500 @enderror"> 
+                    @error('password')
+                        <p class="bg-red-500 text-white rounded-lg text-sm p-2 text-center">
+                            {{$message}}
+                        </p>
+                    @enderror                      
+                </div> 
+                <div class="mb-5">
+                    <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Repetir Nueva Password
+                    </label>
+                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Ingrese nuevamente su nueva contraseña" 
+                    class="border p-3 w-full rounded-lg">
+                </div>                                           
                 <div class="mb-5">
                     <label for="imagen" class="mb-2 block uppercase text-gray-500 font-bold">
                         Imagen Perfil

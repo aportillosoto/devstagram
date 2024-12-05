@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class PerfilController extends Controller
@@ -22,8 +23,20 @@ class PerfilController extends Controller
         $this->validate($request,[
             'username' => ['required','unique:users,username,'.auth()->user()->id,'min:3','max:20',
             'not_in:editar-perfil'],
-            'email' => ['required','unique:users,email,'.auth()->user()->id,'email','max:60']
+            'email' => ['required','unique:users,email,'.auth()->user()->id,'email','max:60'],                        
         ]);
+        $usuario = User::find(auth()->user()->id);
+        // Verificar si la contraseña actual es correcta
+        if(!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'La contraseña actual no coincide'])->withInput();
+        }     
+        // Si hay una contraseña nueva, validar y actualizarla
+        if($request->filled('password')){
+            $request->validate([
+                'password' => 'required|confirmed|min:6'
+            ]);
+            $usuario->password = Hash::make($request->password);
+        }         
         if($request->imagen){
             $imagen = $request->file('imagen');
 
@@ -34,7 +47,7 @@ class PerfilController extends Controller
             $imagenPath = public_path('perfiles').'/'.$nombreImagen;
             $imagenServidor->save($imagenPath);
         }
-        $usuario = User::find(auth()->user()->id);
+        
         $usuario->username = $request->username;
         $usuario->email = $request->email ?? auth()->user()->email;
         $usuario->imagen = $nombreImagen ?? auth()->user()->imagen ?? null;
