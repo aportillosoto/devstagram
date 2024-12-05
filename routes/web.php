@@ -46,3 +46,7 @@ Route::post('/imagenes',[ImagenController::class,'store'])->name('imagenes.store
 //Likes a las fotos
 Route::post('/posts/{post}/likes',[LikeController::class,'store'])->name('posts.likes.store');
 Route::delete('/posts/{post}/likes',[LikeController::class,'destroy'])->name('posts.likes.destroy');
+
+//Siguiendo usuarios
+Route::post('/{user:username}/follow',[FollowController::class,'store'])->name('users.follow');
+Route::delete('/{user:username}/unfollow',[FollowController::class,'destroy'])->name('users.unfollow');
