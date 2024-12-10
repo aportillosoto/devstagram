@@ -72,9 +72,12 @@ CREATE TABLE `followers` (
   KEY `followers_follower_id_foreign` (`follower_id`),
   CONSTRAINT `followers_follower_id_foreign` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`),
   CONSTRAINT `followers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `followers` */
+
+insert  into `followers`(`id`,`user_id`,`follower_id`,`created_at`,`updated_at`) values 
+(3,8,7,NULL,NULL);
 
 /*Table structure for table `likes` */
 
