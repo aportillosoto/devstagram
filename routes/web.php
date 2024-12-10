@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -21,9 +22,11 @@ use App\Http\Controllers\ComentarioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+//HOME
+/*Route::get('/', function () {
     return view('principal');
-});
+});*/
+Route::get('/', HomeController::class)->name('home');
 //Registro
 Route::get('/register', [RegisterController::class,'index'])->name('register');
 Route::post('/register', [RegisterController::class,'store']);
