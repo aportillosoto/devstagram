@@ -7,11 +7,14 @@
         <title>DevStragram-@yield('titulo')</title>        
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
+        @livewireStyles
     </head>
     <body class="bg-gray-100">
        <header class="p-5 border-b bg-white shadow">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="{{route('home')}}" class="text-3xl font-black">DevStragram</a>
+            <a href="{{route('home')}}" class="text-3xl font-black">
+                DevStragram
+            </a>
             @auth
             <nav class="flex gap-2 items-center">
                 <a class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded 
@@ -50,5 +53,6 @@
     <footer class="mt-10 text-center p-5 text-gray-500  font-bold uppercase">
         DevStagram - Todos los derechos reservados {{now()->year}}
     </footer>
+    @livewireScripts
     </body>
 </html>
